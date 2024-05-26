@@ -1,4 +1,4 @@
-import Square from '../Square/Square';
+import Square from './Square/Square';
 import { Item } from '../../types'
 import React from 'react';
 import './SquareBoard.css'

@@ -2,6 +2,8 @@ import './App.css'
 import { Item } from '../types'
 import {useState} from 'react';
 import SquareBoard from '../components/SquareBoard/SquareBoard';
+import Attempts from '../components/Attempts/Attempts';
+import ResetButton from '../components/ResetButton/ResetButton';
 
 const createItems = () => {
   const items: Item[] = [];
@@ -16,9 +18,10 @@ const createItems = () => {
 const App = () => {
 
   const [items, setItems] = useState<Item[]>(createItems())
-
+  const [attempts, setAttempts] = useState(0)
   const handleSquareClick = (index: number) => {
     if (!items[index].clicked) {
+      setAttempts((prevAttempts) => prevAttempts + 1)
       const newItems = [...items];
       const newItem = {...newItems[index]};
       newItem.clicked = true;
@@ -27,9 +30,16 @@ const App = () => {
     }
   }
 
+  const handleReset = () => {
+    setItems(createItems());
+    setAttempts(0);
+  }
+
   return (
     <div>
       <SquareBoard items={items} onSquareClick={handleSquareClick} />
+      <Attempts count={attempts} />
+      <ResetButton onClick={handleReset} />
     </div>
   )
 };
