@@ -1,16 +1,22 @@
-import React, {CSSProperties} from 'react';
+import React from 'react';
+import './Square.css';
 
 interface SquareProps {
   hasItem: boolean;
   clicked: boolean;
+  onClick: () => void;
 }
 
-const Square : React.FC<SquareProps> = ({hasItem, clicked}) => {
-  const stylesSquare: CSSProperties = {display: "block"}
+const Square : React.FC<SquareProps> = ({hasItem, clicked, onClick}) => {
+  const stylesSquare = ['square']
+
+  if (clicked) {
+    stylesSquare.push('clicked')
+  }
+
   return (
-    <div style={stylesSquare}>
-      {hasItem},
-      {clicked}
+    <div className={stylesSquare.join(' ')} onClick={clicked ? undefined : onClick}>
+      {hasItem && clicked ? <span className="diamond">💎</span> : null}
     </div>
   );
 };

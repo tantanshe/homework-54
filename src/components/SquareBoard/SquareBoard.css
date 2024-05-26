@@ -1,0 +1,10 @@
+.square-board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 322px;
+  gap: 2px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
